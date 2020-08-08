@@ -17,10 +17,7 @@ function alteraForm(){
   var meuFone = $('input[name="personal_phone"]');
   var meuFoneVal = meuFone.val();    
   var campoUF =  $('select[name="uf"]');
-  var campoEmpresa = $('input[name="company"]');
-  var labelEmpresa = campoEmpresa.prev('label');
-
-  labelEmpresa.append(mensagemEmpresa);
+  
   $(campoUF).parent( ".bricks-form__field" ).hide();
   
   if (meuFoneVal != "+55 " ) {
