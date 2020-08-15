@@ -1,20 +1,21 @@
-document.addEventListener('DOMContentLoaded', function(event) {
-    var meuFone = $('input[name="personal_phone"]');
-    var meuFoneVal = meuFone.val();    
-    var campoUF =  $('select[name="uf"]'); 
+document.addEventListener('DOMContentLoaded', function(event) {	
+	var campoUF =  $('select[name="uf"]');
+	var meuFone = $('input[name="personal_phone"]');
+	$(campoUF).parent( ".bricks-form__field" ).hide(); //para exibir o campo estado apague esta linha	
 
-		//para exibir o campo estado apague a linha abaixo
-    $(campoUF).parent( ".bricks-form__field" ).hide();
-    
-    if (meuFoneVal != "+55 " ) {
-        $( meuFone ).ready(identificaDDD());
-    }
-    $( meuFone ).blur(function() { identificaDDD() });
+	$( meuFone ).ready(function(){
+		var meuFoneId = "#" + $('input[name="personal_phone"]')[0].id;
+		$( meuFoneId ).blur(function(){
+			identificaDDD();
+		});
+	});
 
-    function identificaDDD(){
-			numeroFone = meuFone.val();
+	function identificaDDD(){
+		var br = "+55";
+		var meuFoneVal = $(meuFone).val();
+		if ( meuFoneVal.substring(0,3) == br ) {
+			numeroFone = $(meuFone).val();
 			dddFone = numeroFone.substring(7, 5);
-        
 			switch (dddFone) {
 			case "11" : case "12" : case "13" : case "14" : case "15" : case "16" : case "17" : case "18" : case "19" : $(campoUF).val("SP"); break;
 			case "21" : case "22" : case "24" : $(campoUF).val("RJ"); break;
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			case "47" : case "48" : case "49" : $(campoUF).val("SC"); break;
 			case "79" : $(campoUF).val("SE"); break;
 			case "63" : $(campoUF).val("TO"); break;
-	    }
+			}
+		}
 	}
 });

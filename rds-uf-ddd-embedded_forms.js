@@ -20,7 +20,8 @@ function alteraForm(){
   
   $(campoUF).parent( ".bricks-form__field" ).hide();
   
-  if (meuFoneVal != "+55 " ) {
+  var br = "+55";
+    if ( meuFoneVal.substring(0,3) == br ) {
       $( meuFone ).ready(identificaDDD());
   }
   $( meuFone ).blur(function() {
